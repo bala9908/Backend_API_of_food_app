@@ -9,6 +9,7 @@ dotenv.config()
 let route=require('./Routes/route')
 let resturantroute=require('./Routes/resturantroute')
 let productroute=require('./Routes/productRoute')
+let path=require('path')
 
 
 let port=process.env.PORT||5018
@@ -16,6 +17,7 @@ let port=process.env.PORT||5018
 app.use('/provider',route)
 app.use('/resturant',resturantroute)
 app.use('/providerresturant',productroute)
+app.use('/uploads',express.static('uploads'));
 app.listen(port,()=>{
     console.log('server Running on the port of 5018')
 })
@@ -25,3 +27,6 @@ mongoose.connect(process.env.Mongo)
 })
 .catch((err)=>{console.log(err)})
 
+app.use('/',(req,res)=>{
+    res.send('<h1>Hello ')
+})
